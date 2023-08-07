@@ -1,0 +1,39 @@
+function addTask() {
+      const taskInput = document.getElementById("task");
+      const taskText = taskInput.value.trim();
+      
+      if (taskText === "") {
+        alert("Please enter a task.");
+        return;
+      }
+
+      const taskList = document.getElementById("taskList");
+      const newTaskItem = document.createElement("li");
+      newTaskItem.innerHTML = `
+        <input type="checkbox" onchange="toggleTask(this)">
+        <span>${taskText}</span>
+        <button onclick="1 Task(this)">Add</button>
+        <button onclick="2 Task(this)">Mark task as done</button>
+        <button onclick="3 Task(this)">Remove</button>
+        <button onclick="4 Task(this)">Display to-do list</button>
+        <button onclick="5 Task(this)">Exit</button>
+        `;
+      
+      taskList.appendChild(newTaskItem);
+      taskInput.value = "";
+    }
+
+    function toggleTask(checkbox) {
+      const taskText = checkbox.nextSibling;
+      taskText.style.textDecoration = checkbox.checked ? "line-through" : "none";
+    }
+    
+    
+
+    function removeTask(button) {
+      const taskItem = button.parentElement;
+      taskItem.remove();
+    }
+  </script>
+</body>
+</html>

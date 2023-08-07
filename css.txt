@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calculator and To-Do List</title>
+</head>
+<body>
+  <h1>Simple Calculator</h1>
+  <input type="number" id="num1" placeholder="Enter number">
+  <select id="operator">
+    <option value="add">+</option>
+    <option value="subtract">-</option>
+    <option value="multiply">*</option>
+    <option value="divide">/</option>
+  </select>
+  <input type="number" id="num2" placeholder="Enter number">
+  <button onclick="calculate()">Calculate</button>
+  <p id="result">Result: </p>
+
+  <h1>To-Do List</h1>
+  <input type="text" id="task" placeholder="Enter task">
+  <button onclick="addTask()">Add Task</button>
+
+  <ul id="taskList">
+  </ul>
+
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      const operator = document.getElementById("operator").value;
+      let result;
+
+      switch (operator) {
+        case "add":
+          result = num1 + num2;
+          break;
+        case "subtract":
+          result = num1 - num2;
+          break;
+        case "multiply":
+          result = num1 * num2;
+          break;
+        case "divide":
+          result = num1 / num2;
+          break;
+        default:
+          result = "Invalid operator";
+          break;
+      }
+
+      document.getElementById("result").innerText = `Result: ${result}`;
+    }
+function addTask() {
+      const taskInput = document.getElementById("task");
+      const taskText = taskInput.value.trim();
+      
+      if (taskText === "") {
+        alert("Please enter a task.");
+        return;
+      }
+
+      const taskList = document.getElementById("taskList");
+      const newTaskItem = document.createElement("li");
+      newTaskItem.innerHTML = `
+        <input type="checkbox" onchange="toggleTask(this)">
+        <span>${taskText}</span>
+        <button onclick="1 Task(this)">Add</button>
+        <button onclick="2 Task(this)">Mark task as done</button>
+        <button onclick="3 Task(this)">Remove</button>
+        <button onclick="4 Task(this)">Display to-do list</button>
+        <button onclick="5 Task(this)">Exit</button>
+        `;
+      
+      taskList.appendChild(newTaskItem);
+      taskInput.value = "";
+    }
+
+    function toggleTask(checkbox) {
+      const taskText = checkbox.nextSibling;
+      taskText.style.textDecoration = checkbox.checked ? "line-through" : "none";
+    }
+    
+    
+
+    function removeTask(button) {
+      const taskItem = button.parentElement;
+      taskItem.remove();
+    }
+  </script>
+</body>
+</html>
